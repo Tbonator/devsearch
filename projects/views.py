@@ -1,5 +1,8 @@
 from django.shortcuts import render
+
+from .forms import ProjectForm
 from .models import Project
+
 
 # Create your views here.
 
@@ -17,5 +20,9 @@ def project(request, pk):
  
  
 def createProject(request):
-    context = {}
-    return render(request,"projects/project_form.html",context)
+    form = ProjectForm()
+    context = {'form': form}
+    return render(request,'projects/project_form.html',context)
+
+
+
