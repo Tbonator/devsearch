@@ -11,5 +11,12 @@
 
 <hr>
 <h1>projects</h1>
+<ul>
+    {% for project in projects %}
+        <li>
+            Name:{{project.title}} --- {{project.description}}
+        </li>
+    {%endfor%}
+</ul>
 
 {% endblock content %}
