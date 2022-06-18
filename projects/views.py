@@ -15,14 +15,17 @@ def projects(request):
 
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
-    tags  = projectObj.tags.all()
+    tags = projectObj.tags.all()
     return render(request, 'projects/single-project.html', {'project': projectObj})
- 
- 
+
+
 def createProject(request):
     form = ProjectForm()
+
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+
     context = {'form': form}
-    return render(request,'projects/project_form.html',context)
-
-
-
+    return render(request, 'projects/project_form.html', context)
